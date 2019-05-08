@@ -6,10 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import com.evan.demo.bottomnavigationdemo.utils.BottomNavigationViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +17,6 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
     private BottomNavigationView mBottomNavigationView;
 
     private int lastIndex;
@@ -33,16 +29,12 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initBottomNavigation();
         initData();
-
     }
 
     public void initView() {
-        mToolbar = findViewById(R.id.toolbar);
-
     }
 
     public void initData() {
-        setSupportActionBar(mToolbar);
         mFragments = new ArrayList<>();
         mFragments.add(new MessageFragment());
         mFragments.add(new ContactsFragment());
@@ -54,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void initBottomNavigation() {
         mBottomNavigationView = findViewById(R.id.bv_bottomNavigation);
-        // 解决当item大于三个时，非平均布局问题
-        BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
